@@ -1,22 +1,12 @@
-<!doctype html>
-<html>
-    <head>
-        <title>Puchku Blog</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="/">Puchku Blog</a></h1>
-        </div>
-
-        <div>
-            {% for item in posts %}
-              <div>
-                <p>Published By: {{ item.published_date }}</p>
-                <h2><a href="#">{{ item.title }}</a></h2>
+{% extends 'blog/base.html' %}
+            {% block content %}
+              {% for item in posts %}
+              <div class="post">
+                <h2><a href="{% url 'post_detail' pk=item.pk %}">{{ item.title }}</a></h2>
+                <div class="date">
+                  <p><strong>Published at: {{ item.published_date }}</strong></p>
+                </div>
                 <p>{{ item.text|linebreaksbr }}</p>
               </div>
-            {% endfor %}
-        </div>
-        <footer>Developed with ♥ by GS Kitchen</footer>
-    </body>
-</html>
+              {% endfor %}
+            {% endblock %}
